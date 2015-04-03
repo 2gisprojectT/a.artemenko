@@ -17,6 +17,22 @@ class Lion:
         else:
             self.hungry = True
 
+    def decision(self, a):
+        # If Lion is hungry
+        if self.get_state():
+            # Look into dictionary for reaction
+            print(Info.relations_hungry[a])
+            # Look into dictionary to find out if need to change state of Lion or not
+            if Info.reaction_hungry[a]:
+                self.change_state()
+        # If Lion is NOT hungry
+        else:
+            print(Info.relations_not_hungry[a])
+            if Info.reaction_not_hungry[a]:
+                self.change_state()
+
+
+
 
 # This class contains all dictionaries
 class Info:
@@ -46,21 +62,7 @@ class Info:
     }
 
 
-# This class contains process of making decision what should Lion do
-class Action:
-    def decision(self, a):
-        # If Lion is hungry
-        if Lion.get_state():
-            # Look into dictionary for reaction
-            print(Info.relations_hungry[a])
-            # Look into dictionary to find out if need to change state of Lion or not
-            if Info.reaction_hungry[a]:
-                Lion.change_state()
-        # If Lion is NOT hungry
-        else:
-            print(Info.relations_not_hungry[a])
-            if Info.reaction_not_hungry[a]:
-                Lion.change_state()
+
 
 if __name__ == '__main__':
     Lion = Lion()
@@ -74,9 +76,10 @@ if __name__ == '__main__':
         print('Скажите, что это за таинственный объект? (антилопа, охотник или дерево)')
         obj = input()
         obj = obj.lower()
-        try:
-            Action.decision(Lion, obj)
-        except:
-            print('Лев не знаком с таким объектом и игнорирует его')
         if obj == 'уйти':
             break
+        try:
+            Lion.decision(obj)
+        except:
+            print('Лев не знаком с таким объектом и игнорирует его')
+
