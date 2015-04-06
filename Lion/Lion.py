@@ -32,8 +32,6 @@ class Lion:
                 self.change_state()
 
 
-
-
 # This class contains all dictionaries
 class Info:
     # This dictionary contains info about Lion's reactions on different objects, when it is hungry
@@ -60,8 +58,6 @@ class Info:
         'охотник': True,
         'дерево': True
     }
-
-
 
 
 if __name__ == '__main__':
