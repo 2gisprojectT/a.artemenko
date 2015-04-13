@@ -5,13 +5,15 @@ class Lion:
     def __init__(self, rel, st):
         self.state = st
         self.reactions = rel
+        self.action = ''
 
     # Method for printing Lions decisions
     def decide(self, obj):
         value = self.reactions[obj, self.state][1]  # Saving input parameter for comfortable work inside of method
         state = self.state  # Saving previous value of state, for returning decision to main method
+        self.action = self.reactions[obj, state][0]
         self.state = value  # Applying new Lion state
-        return self.reactions[obj, state][0]  #  Returning Lions decision to main method
+        return self.action  # Returning Lions decision to main method
 
 
 if __name__ == '__main__':
