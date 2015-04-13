@@ -17,6 +17,7 @@ class Lion_test(TestCase):
     def test_decide(self):
         self.assertEqual(self.L.decide('антилопа'), 'Лев съедает антилопу', 'Метод decide возвращает неверное значение')
         self.assertEqual(self.L.state, 'сытый', 'Метод decide не изменил состояние Льва')
+        self.assertEqual(self.L.action, 'Лев съедает антилопу', 'Метод decide не изменил действие Льва')
 
 
 if __name__ == '__main__':
