@@ -6,17 +6,15 @@ class Lion:
         self.state = 'голодный'
         self.reactions = rel
 
-    # Setter for Lion's state
-    def set_state(self, value):
-        if value != 'голодный' and value != 'сытый':
-            print("Вы ввели некорректное значение")
-        else:
-            self.state = value
-
     # Method for printing Lions decisions
     def decide(self, obj):
-        print(self.reactions[obj, self.state][0])
-        Lion.set_state(self.reactions[obj, self.state][1])
+        value = self.reactions[obj, self.state][1]  # Saving input parameter for comfortable work inside of method
+        state = self.state  # Saving previous value of state, for returning decision to main method
+        if value != 'голодный' and value != 'сытый':
+            return 'Словарь содержит неверное состояние Льва'
+        else:
+            self.state = value  # Applying new Lion state
+            return self.reactions[obj, state][0]  #  Returning Lions decision to main method
 
 
 if __name__ == '__main__':
@@ -42,7 +40,7 @@ if __name__ == '__main__':
         obj = input()
         obj = obj.lower()
         try:
-            Lion.decide(obj)
+            print (Lion.decide(obj))
         except:
             print('Лев не знаком с таким объектом и игнорирует его')
         if obj == 'уйти':
