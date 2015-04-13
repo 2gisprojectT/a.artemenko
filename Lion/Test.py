@@ -8,18 +8,15 @@ import unittest
 
 class Lion_test(TestCase):
     def setUp(self):
-        self.L = Lion({('антилопа', 0): ('Лев съедает антилопу', 1)})
+        self.L = Lion({('антилопа', 'голодный'): ('Лев съедает антилопу', 'сытый')}, 'голодный')
 
     def test_init(self):
-        self.assertEqual(self.L.reactions, {('антилопа', 0): ('Лев съедает антилопу', 1)}, 'Инициализация работает некорректно')
+        self.assertEqual(self.L.reactions, {('антилопа', 'голодный'): ('Лев съедает антилопу', 'сытый')}, 'Инициализация работает некорректно (словарь)')
+        self.assertEqual(self.L.state, 'голодный', 'Инициализация работает некорректно (состояние Льва)')
 
-    def test_get(self):
-        self.L.set_state(1)
-        self.assertEqual(self.L.get_state(), 1, 'Метод get_state работает не корректно')
-
-    def test_set(self):
-        self.L.set_state(0)
-        self.assertEqual(self.L.state, 0, 'Метод set_state работает не корректно')
+    def test_decide(self):
+        self.assertEqual(self.L.decide('антилопа'), 'Лев съедает антилопу', 'Метод decide возвращает неверное значение')
+        self.assertEqual(self.L.state, 'сытый', 'Метод decide не изменил состояние Льва')
 
 
 if __name__ == '__main__':
