@@ -15,7 +15,7 @@ class Lion_test(TestCase):
 
     def test_get(self):
         self.L.set_state(1)
-        self.assertTrue(self.L.get_state(), 1, 'Метод get_state работает не корректно')
+        self.assertEqual(self.L.get_state(), 1, 'Метод get_state работает не корректно')
 
     def test_set(self):
         self.L.set_state(0)

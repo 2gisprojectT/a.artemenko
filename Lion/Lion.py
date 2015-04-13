@@ -2,19 +2,16 @@ __author__ = 'andrejartemenko'
 
 
 class Lion:
-    def __init__(self, rel):
-        self.state = 'голодный'
+    def __init__(self, rel, st):
+        self.state = st
         self.reactions = rel
 
     # Method for printing Lions decisions
     def decide(self, obj):
         value = self.reactions[obj, self.state][1]  # Saving input parameter for comfortable work inside of method
         state = self.state  # Saving previous value of state, for returning decision to main method
-        if value != 'голодный' and value != 'сытый':
-            return 'Словарь содержит неверное состояние Льва'
-        else:
-            self.state = value  # Applying new Lion state
-            return self.reactions[obj, state][0]  #  Returning Lions decision to main method
+        self.state = value  # Applying new Lion state
+        return self.reactions[obj, state][0]  #  Returning Lions decision to main method
 
 
 if __name__ == '__main__':
@@ -26,7 +23,8 @@ if __name__ == '__main__':
         ('дерево', 'голодный'): ('Лев видит дерево, дающее спасительную тень. Он с радостью отправляется спать с надеждой, что после сна он отыщет себе пропитание', 'голодный'),
         ('дерево', 'сытый'): ('Лев смотрит на дерево без всякого интереса', 'голодный')
     }
-    Lion = Lion(param)
+    lion_state = 'голодный'
+    Lion = Lion(param, lion_state)
     print('Если Вы устанете издеваться надо Львом, Вы можете закрыть приложение с помощью команды "уйти"')
     while True:
         print('\n')
@@ -40,7 +38,7 @@ if __name__ == '__main__':
         obj = input()
         obj = obj.lower()
         try:
-            print (Lion.decide(obj))
+            print(Lion.decide(obj))
         except:
             print('Лев не знаком с таким объектом и игнорирует его')
         if obj == 'уйти':
