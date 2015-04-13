@@ -19,6 +19,9 @@ class Lion_test(TestCase):
         self.assertEqual(self.L.state, 'сытый', 'Метод decide не изменил состояние Льва')
         self.assertEqual(self.L.action, 'Лев съедает антилопу', 'Метод decide не изменил действие Льва')
 
+    def test_decide_negative(self):
+        self.assertRaises(Exception, self.L.decide, 'какая-то строка')
+
 
 if __name__ == '__main__':
     unittest.main()
