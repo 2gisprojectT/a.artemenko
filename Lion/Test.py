@@ -8,16 +8,22 @@ import unittest
 
 class Lion_test(TestCase):
     def setUp(self):
-        self.L = Lion({('антилопа', 'голодный'): ('Лев съедает антилопу', 'сытый')}, 'голодный')
+        self.test_dict = {('антилопа', 'голодный'): ('Лев съедает антилопу', 'сытый')}
+        self.test_object = 'антилопа'
+        self.test_state = 'голодный'
+
+        self.L = Lion(self.test_dict, self.test_state)
 
     def test_init(self):
-        self.assertEqual(self.L.reactions, {('антилопа', 'голодный'): ('Лев съедает антилопу', 'сытый')}, 'Инициализация работает некорректно (словарь)')
-        self.assertEqual(self.L.state, 'голодный', 'Инициализация работает некорректно (состояние Льва)')
+        self.assertEqual(self.L.reactions, self.test_dict, 'Инициализация работает некорректно (словарь)')
+        self.assertEqual(self.L.state, self.test_state, 'Инициализация работает некорректно (состояние Льва)')
+
 
     def test_decide(self):
-        self.assertEqual(self.L.decide('антилопа'), 'Лев съедает антилопу', 'Метод decide возвращает неверное значение')
-        self.assertEqual(self.L.state, 'сытый', 'Метод decide не изменил состояние Льва')
-        self.assertEqual(self.L.action, 'Лев съедает антилопу', 'Метод decide не изменил действие Льва')
+        self.decide_result = self.L.decide(self.test_object)
+        self.assertEqual(self.decide_result, self.test_dict[self.test_object, self.test_state][0], 'Метод decide возвращает неверное значение')
+        self.assertEqual(self.L.state, self.test_dict[self.test_object, self.test_state][1], 'Метод decide не изменил состояние Льва')
+        self.assertEqual(self.L.action, self.test_dict[self.test_object, self.test_state][0], 'Метод decide не изменил действие Льва')
 
     def test_decide_negative(self):
         self.assertRaises(Exception, self.L.decide, 'какая-то строка')
@@ -25,4 +31,3 @@ class Lion_test(TestCase):
 
 if __name__ == '__main__':
     unittest.main()
-    Lion_test.init_test()
