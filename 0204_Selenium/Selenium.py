@@ -16,7 +16,7 @@ class Selenium(TestCase):
         elem.click()
         elem2 = driver.find_element_by_id("gh-search-input")
         elem2.send_keys("macbook air")
-        driver.implicitly_wait(5)  # Иногда не успевал загрузить страницу и падал на поиске нужной комбинации слов
+
         try:
             self.assertTrue("MacBook Air" in driver.page_source, "Не найдена ожидаемая строка")
         finally:
@@ -38,7 +38,6 @@ class Selenium(TestCase):
         elem = driver.find_element_by_id("gh-search-input")
         elem.send_keys("ьфсищщл фшк")
 
-        driver.implicitly_wait(5)  # Иногда не успевал загрузить страницу и падал на поиске нужной комбинации слов
         try:
             self.assertTrue("MacBook Air" in driver.page_source, "Не найдена ожидаемая строка")
         finally:
