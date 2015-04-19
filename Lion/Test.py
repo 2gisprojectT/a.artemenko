@@ -11,7 +11,6 @@ class Lion_test(TestCase):
         self.test_dict = {('антилопа', 'голодный'): ('Лев съедает антилопу', 'сытый')}
         self.test_object = 'антилопа'
         self.test_state = 'голодный'
-
         self.L = Lion(self.test_dict, self.test_state)
 
     def test_init(self):
